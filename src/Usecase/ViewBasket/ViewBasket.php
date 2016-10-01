@@ -16,7 +16,7 @@ class ViewBasket
 
     public function __construct(BasketRepositoryInterface $basketRepository)
     {
-        $this->basketRepository   = $basketRepository;
+        $this->basketRepository = $basketRepository;
     }
 
     /**

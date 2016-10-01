@@ -275,11 +275,16 @@ class SubmitOrder
      * @param DeliveryAddress $deliveryAddress
      * @param InvoiceAddress  $invoiceAddress
      * @param bool            $registering
+     * @param string          $birthday
      *
      * @return Customer
      */
-    protected function saveCustomer(DeliveryAddress $deliveryAddress, InvoiceAddress $invoiceAddress, $registering, $birthday)
-    {
+    protected function saveCustomer(
+        DeliveryAddress $deliveryAddress,
+        InvoiceAddress $invoiceAddress,
+        $registering,
+        $birthday
+    ) {
         if (!$customer = $this->customerRepository->match($invoiceAddress)) {
             $customer = $this->customerRepository->factory();
             $customer->setCustomerString($invoiceAddress->getCustomerString());
