@@ -6,6 +6,6 @@ services:
 before_script: docker run --rm -v $(pwd):/app composer/composer install
 
 script:
-  - docker run --rm -v $(pwd):/var/www/html php:7-apache php ./vendor/bin/phpunit tests/ --coverage-clover=coverage.clover
+  - docker run --rm -v $(pwd):/var/www/html cbergau/clean_architecture_shop_symfony3client php ./vendor/bin/phpunit tests/ --coverage-clover=coverage.clover
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
