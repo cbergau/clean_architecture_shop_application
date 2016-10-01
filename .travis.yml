@@ -1,0 +1,9 @@
+sudo: required
+
+services:
+  - docker
+
+before_script: docker run --rm -v $(pwd):/app composer/composer install
+
+script:
+  - docker run --rm -v $(pwd):/var/www/html php:7-apache php ./vendor/bin/phpunit tests/

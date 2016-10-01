@@ -1,0 +1,45 @@
+Bws\Entity\DeliveryAddress:
+    firstName:
+        validators:
+            StringLength:
+                options:
+                    region:
+                        default:
+                            min: 2
+                            max: 30
+                messages:
+                    TOO_SHORT: Your first name must have 2-30 characters
+                    TOO_LONG: Your first name is too long, it can have only 30 characters
+            Regex:
+                options:
+                    region:
+                        default:
+                            pattern: /^[a-z\s]+$/i
+                messages:
+                    NOT_MATCH: Your first name can only contain alphanumeric characters
+    zip:
+        validators:
+            StringLength:
+                options:
+                    region:
+                        default:
+                            min: 2
+                            max: 5
+                        de:
+                            min: 4
+                            max: 5
+                        gb:
+                            min: 4
+                            max: 9
+                messages:
+                    TOO_SHORT: ZIP_TOO_SHORT
+                    TOO_LONG: ZIP_TOO_LONG
+            Regex:
+                options:
+                    region:
+                        default:
+                            pattern: /^[0-9]+$/i
+                        gb:
+                            pattern: /^[a-z0-9]+$/i
+                messages:
+                    NOT_MATCH: Your last name can only contain alphanumeric characters

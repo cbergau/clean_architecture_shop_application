@@ -1,0 +1,18 @@
+{
+  "name": "bergau/clean_architecture_shop_application",
+  "license": "MIT",
+  "type": "project",
+  "description": "PHP Shop in Clean Architecture. In here are the business rules of the application.",
+  "autoload": {
+    "psr-4": { "Bws\\": "src/" }
+  },
+  "autoload-dev": {
+    "psr-4": { "Bws\\": "tests/" }
+  },
+  "require": {
+    "php": ">=7.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.5.5"
+  }
+}
