@@ -10,6 +10,8 @@ Metrics:
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/7c338ac7-3ba5-48fb-94ac-79365b45f684/big.png)](https://insight.sensiolabs.com/projects/7c338ac7-3ba5-48fb-94ac-79365b45f684)
 
+[![Build Status](https://travis-ci.org/cbergau/clean_architecture_shop_application.svg?branch=master)](https://travis-ci.org/cbergau/clean_architecture_shop_application)
+
 Links for Clean Architecture:
 =============================
 
