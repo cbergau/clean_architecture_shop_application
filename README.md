@@ -5,6 +5,11 @@ This is an example implementation of a shop which is done by the principles of c
 
 This repository contains all the business rules.
 
+Metrics:
+===
+
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/7c338ac7-3ba5-48fb-94ac-79365b45f684/big.png)](https://insight.sensiolabs.com/projects/7c338ac7-3ba5-48fb-94ac-79365b45f684)
+
 Links for Clean Architecture:
 =============================
 

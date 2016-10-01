@@ -2,7 +2,7 @@
 
 namespace Bws\Validator;
 
-class Regex implements Validator
+class Regex implements ValidatorInterface
 {
     private $pattern;
     private $messages = array();

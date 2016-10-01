@@ -42,7 +42,7 @@ class DeliveryAddressValidator
 
     /**
      * @param DeliveryAddress $deliveryAddress
-     * @param                 Validator[] $validators
+     * @param                 ValidatorInterface[] $validators
      * @param                 boolean $isValid
      *
      * @return bool
@@ -66,7 +66,7 @@ class DeliveryAddressValidator
      */
     protected function validateProperty(DeliveryAddress $deliveryAddress, $valid, $validatorsForProperty, $property)
     {
-        /** @var Validator $validator */
+        /** @var ValidatorInterface $validator */
         foreach ($validatorsForProperty as $validator) {
             $getter                  = 'get' . ucfirst($property);
             $value                   = $deliveryAddress->$getter();
@@ -82,7 +82,7 @@ class DeliveryAddressValidator
     }
 
     /**
-     * @return Validator[]
+     * @return ValidatorInterface[]
      */
     protected function getValidators()
     {

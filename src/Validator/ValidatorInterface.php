@@ -7,7 +7,7 @@
 
 namespace Bws\Validator;
 
-interface Validator
+interface ValidatorInterface
 {
     /**
      * @return boolean

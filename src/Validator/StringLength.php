@@ -2,7 +2,7 @@
 
 namespace Bws\Validator;
 
-class StringLength implements Validator
+class StringLength implements ValidatorInterface
 {
     /**
      * @var int
