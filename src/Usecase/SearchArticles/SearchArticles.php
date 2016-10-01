@@ -2,16 +2,16 @@
 
 namespace Bws\Usecase\SearchArticles;
 
-use Bws\Repository\ArticleRepository;
+use Bws\Repository\ArticleRepositoryInterface;
 
 class SearchArticles
 {
     /**
-     * @var ArticleRepository
+     * @var ArticleRepositoryInterface
      */
     private $articleRepository;
 
-    public function __construct(ArticleRepository $articleRepository)
+    public function __construct(ArticleRepositoryInterface $articleRepository)
     {
         $this->articleRepository = $articleRepository;
     }

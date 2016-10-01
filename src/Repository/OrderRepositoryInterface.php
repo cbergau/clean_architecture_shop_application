@@ -9,7 +9,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\Order;
 
-interface OrderRepository
+interface OrderRepositoryInterface
 {
     /**
      * @param Order $order

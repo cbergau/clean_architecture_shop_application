@@ -4,17 +4,17 @@ namespace Bws\Usecase\ViewBasket;
 
 use ArrayAccess;
 use Bws\Entity\BasketPosition;
-use Bws\Repository\BasketRepository;
+use Bws\Repository\BasketRepositoryInterface;
 use Bws\PriceFormatter\PriceFormatter;
 
 class ViewBasket
 {
     /**
-     * @var BasketRepository
+     * @var BasketRepositoryInterface
      */
     private $basketRepository;
 
-    public function __construct(BasketRepository $basketRepository)
+    public function __construct(BasketRepositoryInterface $basketRepository)
     {
         $this->basketRepository   = $basketRepository;
     }

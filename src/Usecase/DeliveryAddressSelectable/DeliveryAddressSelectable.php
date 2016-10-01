@@ -2,24 +2,24 @@
 
 namespace Bws\Usecase\DeliveryAddressSelectable;
 
-use Bws\Repository\CustomerRepository;
-use Bws\Repository\DeliveryAddressRepository;
+use Bws\Repository\CustomerRepositoryInterface;
+use Bws\Repository\DeliveryAddressRepositoryInterface;
 
 class DeliveryAddressSelectable
 {
     /**
-     * @var \Bws\Repository\CustomerRepository
+     * @var \Bws\Repository\CustomerRepositoryInterface
      */
     private $customerRepository;
 
     /**
-     * @var \Bws\Repository\DeliveryAddressRepository
+     * @var \Bws\Repository\DeliveryAddressRepositoryInterface
      */
     private $deliveryAddressRepository;
 
     public function __construct(
-        CustomerRepository $customerRepository,
-        DeliveryAddressRepository $deliveryAddressRepository
+        CustomerRepositoryInterface $customerRepository,
+        DeliveryAddressRepositoryInterface $deliveryAddressRepository
     ) {
         $this->customerRepository        = $customerRepository;
         $this->deliveryAddressRepository = $deliveryAddressRepository;

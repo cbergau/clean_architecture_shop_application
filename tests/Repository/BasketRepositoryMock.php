@@ -4,7 +4,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\Basket;
 
-class BasketRepositoryMock extends InMemoryRepository implements BasketRepository
+class BasketRepositoryMock extends InMemoryRepository implements BasketRepositoryInterface
 {
     /**
      * @var int

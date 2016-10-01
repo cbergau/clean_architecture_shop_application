@@ -5,16 +5,16 @@ namespace Bws\Usecase\ShowOrders;
 use Bws\Entity\Address;
 use Bws\Entity\BasketPosition;
 use Bws\Entity\Order;
-use Bws\Repository\OrderRepository;
+use Bws\Repository\OrderRepositoryInterface;
 
 class ShowOrdersInteractor
 {
     /**
-     * @var OrderRepository
+     * @var OrderRepositoryInterface
      */
     private $orderRepository;
 
-    public function __construct(OrderRepository $orderRepository)
+    public function __construct(OrderRepositoryInterface $orderRepository)
     {
         $this->orderRepository = $orderRepository;
     }

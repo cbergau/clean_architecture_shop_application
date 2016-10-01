@@ -4,7 +4,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\PaymentMethod;
 
-class PaymentMethodRepositoryMock extends InMemoryRepository implements PaymentMethodRepository
+class PaymentMethodRepositoryMock extends InMemoryRepository implements PaymentMethodRepositoryInterface
 {
     /**
      * @return PaymentMethod[]

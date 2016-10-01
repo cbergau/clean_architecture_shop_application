@@ -4,7 +4,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\InvoiceAddress;
 
-class InvoiceAddressRepositoryMock extends InMemoryRepository implements InvoiceAddressRepository
+class InvoiceAddressRepositoryMock extends InMemoryRepository implements InvoiceAddressRepositoryInterface
 {
     /**
      * @var InvoiceAddress

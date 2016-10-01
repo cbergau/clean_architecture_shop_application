@@ -10,56 +10,56 @@ use Bws\Entity\InvoiceAddress;
 use Bws\Entity\LogisticPartner;
 use Bws\Entity\Order;
 use Bws\Entity\PaymentMethod;
-use Bws\Repository\BasketRepository;
-use Bws\Repository\CustomerRepository;
-use Bws\Repository\DeliveryAddressRepository;
-use Bws\Repository\EmailAddressRepository;
-use Bws\Repository\InvoiceAddressRepository;
-use Bws\Repository\LogisticPartnerRepository;
-use Bws\Repository\OrderRepository;
-use Bws\Repository\PaymentMethodRepository;
+use Bws\Repository\BasketRepositoryInterface;
+use Bws\Repository\CustomerRepositoryInterface;
+use Bws\Repository\DeliveryAddressRepositoryInterface;
+use Bws\Repository\EmailAddressRepositoryInterface;
+use Bws\Repository\InvoiceAddressRepositoryInterface;
+use Bws\Repository\LogisticPartnerRepositoryInterface;
+use Bws\Repository\OrderRepositoryInterface;
+use Bws\Repository\PaymentMethodRepositoryInterface;
 use Bws\Usecase\PresentCurrentAddress\PresentCurrentAddress;
 use Exception;
 
 class SubmitOrder
 {
     /**
-     * @var \Bws\Repository\InvoiceAddressRepository
+     * @var \Bws\Repository\InvoiceAddressRepositoryInterface
      */
     private $invoiceAddressRepository;
 
     /**
-     * @var \Bws\Repository\DeliveryAddressRepository
+     * @var \Bws\Repository\DeliveryAddressRepositoryInterface
      */
     private $deliveryAddressRepository;
 
     /**
-     * @var \Bws\Repository\BasketRepository
+     * @var \Bws\Repository\BasketRepositoryInterface
      */
     private $basketRepository;
 
     /**
-     * @var \Bws\Repository\OrderRepository
+     * @var \Bws\Repository\OrderRepositoryInterface
      */
     private $orderRepository;
 
     /**
-     * @var CustomerRepository
+     * @var CustomerRepositoryInterface
      */
     private $customerRepository;
 
     /**
-     * @var EmailAddressRepository
+     * @var EmailAddressRepositoryInterface
      */
     private $emailAddressRepository;
 
     /**
-     * @var PaymentMethodRepository
+     * @var PaymentMethodRepositoryInterface
      */
     private $paymentMethodRepository;
 
     /**
-     * @var LogisticPartnerRepository
+     * @var LogisticPartnerRepositoryInterface
      */
     private $logisticPartnerRepository;
 
@@ -69,14 +69,14 @@ class SubmitOrder
     private $presentCurrentAddress;
 
     public function __construct(
-        InvoiceAddressRepository $invoiceAddressRepository,
-        DeliveryAddressRepository $deliveryAddressRepository,
-        BasketRepository $basketRepository,
-        OrderRepository $orderRepository,
-        CustomerRepository $customerRepository,
-        EmailAddressRepository $emailAddressRepository,
-        PaymentMethodRepository $paymentMethodRepository,
-        LogisticPartnerRepository $logisticPartnerRepository,
+        InvoiceAddressRepositoryInterface $invoiceAddressRepository,
+        DeliveryAddressRepositoryInterface $deliveryAddressRepository,
+        BasketRepositoryInterface $basketRepository,
+        OrderRepositoryInterface $orderRepository,
+        CustomerRepositoryInterface $customerRepository,
+        EmailAddressRepositoryInterface $emailAddressRepository,
+        PaymentMethodRepositoryInterface $paymentMethodRepository,
+        LogisticPartnerRepositoryInterface $logisticPartnerRepository,
         PresentCurrentAddress $presentCurrentAddress
     ) {
         $this->invoiceAddressRepository  = $invoiceAddressRepository;

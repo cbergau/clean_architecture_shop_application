@@ -4,25 +4,25 @@ namespace Bws\Usecase\AddDeliveryAddress;
 
 use Bws\Entity\Customer;
 use Bws\Entity\DeliveryAddress;
-use Bws\Repository\CustomerRepository;
-use Bws\Repository\DeliveryAddressRepository;
+use Bws\Repository\CustomerRepositoryInterface;
+use Bws\Repository\DeliveryAddressRepositoryInterface;
 use Bws\Validator\DeliveryAddressValidatorFactory;
 
 class AddDeliveryAddress
 {
     /**
-     * @var CustomerRepository
+     * @var CustomerRepositoryInterface
      */
     private $customerRepository;
 
     /**
-     * @var DeliveryAddressRepository
+     * @var DeliveryAddressRepositoryInterface
      */
     private $deliveryAddressRepository;
 
     public function __construct(
-        CustomerRepository $customerRepository,
-        DeliveryAddressRepository $deliveryAddressRepository
+        CustomerRepositoryInterface $customerRepository,
+        DeliveryAddressRepositoryInterface $deliveryAddressRepository
     ) {
         $this->customerRepository        = $customerRepository;
         $this->deliveryAddressRepository = $deliveryAddressRepository;

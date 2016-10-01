@@ -4,7 +4,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\Basket;
 
-interface BasketRepository
+interface BasketRepositoryInterface
 {
     /**
      * @param integer $id

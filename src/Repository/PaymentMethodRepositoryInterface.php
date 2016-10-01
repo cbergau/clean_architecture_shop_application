@@ -9,7 +9,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\PaymentMethod;
 
-interface PaymentMethodRepository
+interface PaymentMethodRepositoryInterface
 {
     /**
      * @return PaymentMethod[]

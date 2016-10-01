@@ -4,7 +4,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\EmailAddress;
 
-class EmailAddressRepositoryMock extends InMemoryRepository implements EmailAddressRepository
+class EmailAddressRepositoryMock extends InMemoryRepository implements EmailAddressRepositoryInterface
 {
     /**
      * @var EmailAddress

@@ -3,19 +3,19 @@
 namespace Bws\Usecase\Login;
 
 use Bws\Entity\Customer;
-use Bws\Repository\EmailAddressRepository;
+use Bws\Repository\EmailAddressRepositoryInterface;
 
 class Login
 {
     /**
-     * @var EmailAddressRepository
+     * @var EmailAddressRepositoryInterface
      */
     private $emailRepository;
 
     /**
-     * @param EmailAddressRepository $emailRepository
+     * @param EmailAddressRepositoryInterface $emailRepository
      */
-    public function __construct(EmailAddressRepository $emailRepository)
+    public function __construct(EmailAddressRepositoryInterface $emailRepository)
     {
         $this->emailRepository = $emailRepository;
     }

@@ -9,7 +9,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\DeliveryAddress;
 
-interface DeliveryAddressRepository
+interface DeliveryAddressRepositoryInterface
 {
     /**
      * @param DeliveryAddress $deliveryAddress

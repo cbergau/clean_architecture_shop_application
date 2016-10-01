@@ -4,32 +4,32 @@ namespace Bws\Usecase\AddToBasket;
 
 use Bws\Entity\Article;
 use Bws\Entity\Basket;
-use Bws\Repository\ArticleRepository;
-use Bws\Repository\BasketPositionRepository;
-use Bws\Repository\BasketRepository;
+use Bws\Repository\ArticleRepositoryInterface;
+use Bws\Repository\BasketPositionRepositoryInterface;
+use Bws\Repository\BasketRepositoryInterface;
 use Bws\PriceFormatter\PriceFormatter;
 
 class AddToBasket
 {
     /**
-     * @var ArticleRepository
+     * @var ArticleRepositoryInterface
      */
     private $articleRepository;
 
     /**
-     * @var BasketRepository
+     * @var BasketRepositoryInterface
      */
     private $basketRepository;
 
     /**
-     * @var BasketPositionRepository
+     * @var BasketPositionRepositoryInterface
      */
     private $basketPositionRepository;
 
     public function __construct(
-        ArticleRepository $articleRepository,
-        BasketPositionRepository $basketPositionRepository,
-        BasketRepository $basketRepository
+        ArticleRepositoryInterface $articleRepository,
+        BasketPositionRepositoryInterface $basketPositionRepository,
+        BasketRepositoryInterface $basketRepository
     ) {
         $this->articleRepository        = $articleRepository;
         $this->basketPositionRepository = $basketPositionRepository;

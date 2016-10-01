@@ -4,7 +4,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\Article;
 
-class ArticleRepositoryMock extends InMemoryRepository implements ArticleRepository
+class ArticleRepositoryMock extends InMemoryRepository implements ArticleRepositoryInterface
 {
     /**
      * @var int

@@ -4,7 +4,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\Order;
 
-class OrderRepositoryMock extends InMemoryRepository implements OrderRepository
+class OrderRepositoryMock extends InMemoryRepository implements OrderRepositoryInterface
 {
     private $lastInserted;
 

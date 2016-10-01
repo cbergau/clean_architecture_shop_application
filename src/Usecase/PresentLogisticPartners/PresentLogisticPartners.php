@@ -2,16 +2,16 @@
 
 namespace Bws\Usecase\PresentLogisticPartners;
 
-use Bws\Repository\LogisticPartnerRepository;
+use Bws\Repository\LogisticPartnerRepositoryInterface;
 
 class PresentLogisticPartners
 {
     /**
-     * @var LogisticPartnerRepository
+     * @var LogisticPartnerRepositoryInterface
      */
     private $logisticPartnerRepository;
 
-    public function __construct(LogisticPartnerRepository $logisticPartnerRepository)
+    public function __construct(LogisticPartnerRepositoryInterface $logisticPartnerRepository)
     {
         $this->logisticPartnerRepository = $logisticPartnerRepository;
     }

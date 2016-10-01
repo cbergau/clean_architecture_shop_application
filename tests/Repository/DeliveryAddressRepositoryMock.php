@@ -4,7 +4,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\DeliveryAddress;
 
-class DeliveryAddressRepositoryMock extends InMemoryRepository implements DeliveryAddressRepository
+class DeliveryAddressRepositoryMock extends InMemoryRepository implements DeliveryAddressRepositoryInterface
 {
     /**
      * @var DeliveryAddress

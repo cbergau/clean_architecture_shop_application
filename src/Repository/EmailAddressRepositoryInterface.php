@@ -9,7 +9,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\EmailAddress;
 
-interface EmailAddressRepository
+interface EmailAddressRepositoryInterface
 {
     /**
      * @return EmailAddress

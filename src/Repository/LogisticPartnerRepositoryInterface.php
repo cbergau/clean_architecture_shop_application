@@ -9,7 +9,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\LogisticPartner;
 
-interface LogisticPartnerRepository
+interface LogisticPartnerRepositoryInterface
 {
     /**
      * @return LogisticPartner[]

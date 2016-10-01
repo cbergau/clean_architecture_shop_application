@@ -2,16 +2,16 @@
 
 namespace Bws\Usecase\PresentArticle;
 
-use Bws\Repository\ArticleRepository;
+use Bws\Repository\ArticleRepositoryInterface;
 
 class PresentArticle
 {
     /**
-     * @var \Bws\Repository\ArticleRepository
+     * @var \Bws\Repository\ArticleRepositoryInterface
      */
     private $articleRepository;
 
-    public function __construct(ArticleRepository $articleRepository)
+    public function __construct(ArticleRepositoryInterface $articleRepository)
     {
         $this->articleRepository = $articleRepository;
     }

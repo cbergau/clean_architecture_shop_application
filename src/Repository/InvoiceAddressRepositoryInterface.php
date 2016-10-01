@@ -9,7 +9,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\InvoiceAddress;
 
-interface InvoiceAddressRepository
+interface InvoiceAddressRepositoryInterface
 {
     /**
      * @param InvoiceAddress $invoiceAddress

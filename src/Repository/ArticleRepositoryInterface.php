@@ -9,7 +9,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\Article;
 
-interface ArticleRepository
+interface ArticleRepositoryInterface
 {
     /**
      * @param integer $id

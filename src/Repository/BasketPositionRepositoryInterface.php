@@ -5,7 +5,7 @@ namespace Bws\Repository;
 use Bws\Entity\Basket;
 use Bws\Entity\BasketPosition;
 
-interface BasketPositionRepository
+interface BasketPositionRepositoryInterface
 {
     /**
      * @param Basket $basket

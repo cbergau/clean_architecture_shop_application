@@ -3,12 +3,12 @@
 namespace Bws\Usecase\PresentLastUsedAddress;
 
 use Bws\Entity\DeliveryAddress;
-use Bws\Repository\CustomerRepository;
+use Bws\Repository\CustomerRepositoryInterface;
 
 class PresentLastUsedAddress
 {
     /**
-     * @var CustomerRepository
+     * @var CustomerRepositoryInterface
      */
     private $customerRepository;
 
@@ -17,7 +17,7 @@ class PresentLastUsedAddress
      */
     private $lastFetchedDeliveryAddress;
 
-    public function __construct(CustomerRepository $customerRepository)
+    public function __construct(CustomerRepositoryInterface $customerRepository)
     {
         $this->customerRepository = $customerRepository;
     }

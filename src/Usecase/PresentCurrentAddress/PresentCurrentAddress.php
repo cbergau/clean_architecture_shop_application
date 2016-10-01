@@ -2,7 +2,7 @@
 
 namespace Bws\Usecase\PresentCurrentAddress;
 
-use Bws\Repository\DeliveryAddressRepository;
+use Bws\Repository\DeliveryAddressRepositoryInterface;
 use Bws\Usecase\PresentLastUsedAddress\PresentLastUsedAddress;
 
 class PresentCurrentAddress
@@ -13,14 +13,14 @@ class PresentCurrentAddress
     private $presentLastUsedAddress;
 
     /**
-     * @var DeliveryAddressRepository
+     * @var DeliveryAddressRepositoryInterface
      */
     private $deliveryAddressRepository;
 
     private $lastFetchedDeliveryAddress;
 
     public function __construct(
-        DeliveryAddressRepository $deliveryAddressRepository,
+        DeliveryAddressRepositoryInterface $deliveryAddressRepository,
         PresentLastUsedAddress $presentLastUsedAddress
     ) {
         $this->deliveryAddressRepository = $deliveryAddressRepository;

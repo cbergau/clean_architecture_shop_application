@@ -4,7 +4,7 @@ namespace Bws\Repository;
 
 use Bws\Entity\LogisticPartner;
 
-class LogisticPartnerRepositoryMock extends InMemoryRepository implements LogisticPartnerRepository
+class LogisticPartnerRepositoryMock extends InMemoryRepository implements LogisticPartnerRepositoryInterface
 {
     const DHL_ID = 1;
     const HERMES_ID = 2;

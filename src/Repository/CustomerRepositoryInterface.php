@@ -10,7 +10,7 @@ namespace Bws\Repository;
 use Bws\Entity\InvoiceAddress;
 use Bws\Entity\Customer;
 
-interface CustomerRepository
+interface CustomerRepositoryInterface
 {
     /**
      * @return Customer

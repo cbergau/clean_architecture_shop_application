@@ -2,16 +2,16 @@
 
 namespace Bws\Usecase\PresentPaymentMethods;
 
-use Bws\Repository\PaymentMethodRepository;
+use Bws\Repository\PaymentMethodRepositoryInterface;
 
 class PresentPaymentMethods
 {
     /**
-     * @var PaymentMethodRepository
+     * @var PaymentMethodRepositoryInterface
      */
     private $paymentMethodRepository;
 
-    public function __construct(PaymentMethodRepository $paymentMethodRepository)
+    public function __construct(PaymentMethodRepositoryInterface $paymentMethodRepository)
     {
         $this->paymentMethodRepository = $paymentMethodRepository;
     }

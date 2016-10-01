@@ -6,7 +6,7 @@ use Bws\Entity\Customer;
 use Bws\Entity\CustomerStub;
 use Bws\Entity\InvoiceAddress;
 
-class CustomerRepositoryMock extends InMemoryRepository implements CustomerRepository
+class CustomerRepositoryMock extends InMemoryRepository implements CustomerRepositoryInterface
 {
     /**
      * @var Customer

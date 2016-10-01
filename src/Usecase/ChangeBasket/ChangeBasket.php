@@ -3,22 +3,22 @@
 namespace Bws\Usecase\ChangeBasket;
 
 use Bws\Entity\BasketPosition;
-use Bws\Repository\BasketPositionRepository;
-use Bws\Repository\BasketRepository;
+use Bws\Repository\BasketPositionRepositoryInterface;
+use Bws\Repository\BasketRepositoryInterface;
 
 class ChangeBasket
 {
     /**
-     * @var BasketRepository
+     * @var BasketRepositoryInterface
      */
     private $basketRepository;
 
     /**
-     * @var BasketPositionRepository
+     * @var BasketPositionRepositoryInterface
      */
     private $basketPositionRepository;
 
-    public function __construct(BasketPositionRepository $basketPositionRepository, BasketRepository $basketRepository)
+    public function __construct(BasketPositionRepositoryInterface $basketPositionRepository, BasketRepositoryInterface $basketRepository)
     {
         $this->basketPositionRepository = $basketPositionRepository;
         $this->basketRepository         = $basketRepository;

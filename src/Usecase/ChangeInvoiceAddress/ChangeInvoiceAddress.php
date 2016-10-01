@@ -4,24 +4,24 @@ namespace Bws\Usecase\ChangeInvoiceAddress;
 
 use Bws\Entity\Customer;
 use Bws\Entity\InvoiceAddress;
-use Bws\Repository\CustomerRepository;
-use Bws\Repository\InvoiceAddressRepository;
+use Bws\Repository\CustomerRepositoryInterface;
+use Bws\Repository\InvoiceAddressRepositoryInterface;
 
 class ChangeInvoiceAddress
 {
     /**
-     * @var \Bws\Repository\CustomerRepository
+     * @var \Bws\Repository\CustomerRepositoryInterface
      */
     private $customerRepository;
 
     /**
-     * @var \Bws\Repository\InvoiceAddressRepository
+     * @var \Bws\Repository\InvoiceAddressRepositoryInterface
      */
     private $invoiceAddressRepository;
 
     public function __construct(
-        CustomerRepository $customerRepository,
-        InvoiceAddressRepository $invoiceAddressRepository
+        CustomerRepositoryInterface $customerRepository,
+        InvoiceAddressRepositoryInterface $invoiceAddressRepository
     ) {
         $this->customerRepository       = $customerRepository;
         $this->invoiceAddressRepository = $invoiceAddressRepository;
