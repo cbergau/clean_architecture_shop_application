@@ -25,7 +25,8 @@ class PresentArticles
         $articles = array();
 
         $articlesFromRepository = $this->articleRepository->findAll();
-        if ($articlesFromRepository) {
+
+        if (!empty($articlesFromRepository)) {
             $articles = $this->buildDto($articlesFromRepository, $articles);
         }
 
