@@ -15,3 +15,9 @@ Links for Clean Architecture:
 
  - http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html
  - https://www.youtube.com/watch?v=asLUTiJJqdE
+
+Send code coverage manually
+===
+
+docker run --rm -e XDEBUG_CONFIG="remote_host=192.168.178.22" -e PHP_IDE_CONFIG="serverName=my.server" -v $(pwd):/var/www/html cbergau/clean_architecture_shop_symfony3client php ./vendor/bin/phpunit --coverage-clover=coverage_clover.xml --configuration=tests/ tests/
+docker run --rm -v $(pwd):/var/www/html cbergau/clean_architecture_shop_symfony3client php vendor/bin/coveralls -x coverage_clover.xml -v
