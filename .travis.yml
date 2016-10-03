@@ -7,8 +7,7 @@ before_script: docker run --rm -v $(pwd):/app composer/composer install
 
 script:
   - wget https://scrutinizer-ci.com/ocular.phar
-  - mkdir build
-  - mkdir build/logs
+  - mkdir -p build/logs
 
 after_success:
   - docker run --rm -v $(pwd):/var/www/html cbergau/clean_architecture_shop_symfony3client php ./vendor/bin/phpunit --coverage-clover=build/logs/clover.xml --configuration=tests/ tests/ && php ocular.phar code-coverage:upload --format=php-clover coverage.clover && php vendor/bin/coveralls -v
