@@ -24,6 +24,8 @@ interface EmailAddressRepositoryInterface
     public function findByAddress($address);
 
     /**
+     * @param EmailAddress $emailAddress
+     *
      * @return void
      */
     public function save(EmailAddress $emailAddress);

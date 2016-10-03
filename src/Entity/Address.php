@@ -39,7 +39,7 @@ class Address extends Entity
      *
      * @param string $firstName
      *
-     * @return InvoiceAddress
+     * @return Address
      */
     public function setFirstName($firstName)
     {
@@ -63,7 +63,7 @@ class Address extends Entity
      *
      * @param string $lastName
      *
-     * @return InvoiceAddress
+     * @return Address
      */
     public function setLastName($lastName)
     {
@@ -87,7 +87,7 @@ class Address extends Entity
      *
      * @param string $street
      *
-     * @return InvoiceAddress
+     * @return Address
      */
     public function setStreet($street)
     {
@@ -111,7 +111,7 @@ class Address extends Entity
      *
      * @param string $zip
      *
-     * @return InvoiceAddress
+     * @return Address
      */
     public function setZip($zip)
     {
@@ -135,7 +135,7 @@ class Address extends Entity
      *
      * @param string $city
      *
-     * @return InvoiceAddress
+     * @return Address
      */
     public function setCity($city)
     {
@@ -169,7 +169,7 @@ class Address extends Entity
      *
      * @param Customer $customer
      *
-     * @return InvoiceAddress
+     * @return Address
      */
     public function setCustomer(Customer $customer = null)
     {

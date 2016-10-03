@@ -10,6 +10,8 @@ namespace Bws\Validator;
 interface ValidatorInterface
 {
     /**
+     * @param mixed $value
+     *
      * @return boolean
      */
     public function isValid($value);
