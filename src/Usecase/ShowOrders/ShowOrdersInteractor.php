@@ -6,8 +6,6 @@ use Bws\Entity\Address;
 use Bws\Entity\BasketPosition;
 use Bws\Entity\Order;
 use Bws\PriceFormatter\PriceFormatter;
-use Bws\Repository\BasketPositionRepositoryInterface;
-use Bws\Repository\BasketRepositoryInterface;
 use Bws\Repository\OrderRepositoryInterface;
 
 class ShowOrdersInteractor
