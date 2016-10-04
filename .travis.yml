@@ -6,6 +6,7 @@ services:
 before_script: docker run --rm -v $(pwd):/app composer/composer install
 
 script:
+  - env
   - docker pull cbergau/clean_architecture_shop_symfony3client
   - docker run --rm -v $(pwd):/var/www/html cbergau/clean_architecture_shop_symfony3client php ./vendor/bin/phpunit --coverage-clover=coverage_clover.xml --configuration=tests/ tests/
 
