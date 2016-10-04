@@ -2,6 +2,8 @@
 
 namespace Bws\Entity;
 
+use Bws\PriceFormatter\PriceFormatter;
+
 class Order extends Entity
 {
     /**
@@ -213,5 +215,24 @@ class Order extends Entity
     public function getPaymentMethod()
     {
         return $this->paymentMethod;
+    }
+
+    /**
+     * @return float
+     */
+    public function getValue()
+    {
+        $value = 0.00;
+
+        if (null === $this->basket || null === $this->basket->getPositions()) {
+            return $value;
+        }
+
+        /** @var BasketPosition $position */
+        foreach ($this->getBasket()->getPositions() as $position) {
+            $value += $position->getArticle()->getPrice() * $position->getCount();
+        }
+
+        return PriceFormatter::format($value);
     }
 }

@@ -5,6 +5,9 @@ namespace Bws\Usecase\ShowOrders;
 use Bws\Entity\Address;
 use Bws\Entity\BasketPosition;
 use Bws\Entity\Order;
+use Bws\PriceFormatter\PriceFormatter;
+use Bws\Repository\BasketPositionRepositoryInterface;
+use Bws\Repository\BasketRepositoryInterface;
 use Bws\Repository\OrderRepositoryInterface;
 
 class ShowOrdersInteractor
@@ -31,12 +34,12 @@ class ShowOrdersInteractor
 
         foreach ($orders as $order) {
             $presentableOrder = new PresentableOrder();
-            $presentableOrder->totalValue = '39,99 €';
+            $presentableOrder->totalValue = $order->getValue() . ' €';
             $presentableOrder->number = $order->getId();
 
             $this->putBasketPositionsInResponse($order, $presentableOrder);
 
-            $presentableOrder->invoiceAddress  = $this->getPresentableArrayFromAddress($order->getInvoiceAddress());
+            $presentableOrder->invoiceAddress = $this->getPresentableArrayFromAddress($order->getInvoiceAddress());
             $presentableOrder->deliveryAddress = $this->getPresentableArrayFromAddress($order->getDeliveryAddress());
 
             $response->presentableOrders[] = $presentableOrder;
@@ -76,8 +79,8 @@ class ShowOrdersInteractor
                     'imagePath' => $article->getImagePath(),
                     'price' => $article->getPrice() . ' €',
                 ),
-                'value' => $position->getCount() * $article->getPrice() . ' €',
-                'quantity' => 2
+                'value' => PriceFormatter::format($position->getCount() * $article->getPrice()) . ' €',
+                'quantity' => $position->getCount()
             );
 
             $presentableOrder->positions[] = $positions;

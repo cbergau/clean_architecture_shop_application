@@ -9,6 +9,8 @@ use Bws\Entity\BasketPosition;
 use Bws\Entity\Customer;
 use Bws\Entity\DeliveryAddress;
 use Bws\Entity\InvoiceAddress;
+use Bws\Repository\BasketPositionRepositoryMock;
+use Bws\Repository\BasketRepositoryMock;
 use Bws\Usecase\ShowOrders\PresentableOrder;
 use Bws\Usecase\ShowOrders\ShowOrdersInteractor;
 use Bws\Repository\OrderRepositoryMock;
@@ -25,10 +27,27 @@ class ShowOrdersInteractorTest extends \PHPUnit_Framework_TestCase
      */
     private $orderRepository;
 
+    /**
+     * @var BasketPositionRepositoryMock
+     */
+    private $basketPositionRepository;
+
+    /**
+     * @var BasketRepositoryMock
+     */
+    private $basketRepository;
+
     public function setUp()
     {
         $this->orderRepository = new OrderRepositoryMock();
-        $this->interactor = new ShowOrdersInteractor($this->orderRepository);
+        $this->basketPositionRepository = new BasketPositionRepositoryMock();
+        $this->basketRepository = new BasketRepositoryMock();
+
+        $this->interactor = new ShowOrdersInteractor(
+            $this->orderRepository,
+            $this->basketRepository,
+            $this->basketPositionRepository
+        );
     }
 
     public function testExecuteWithoutOrdersShouldReturnEmptyResponse()
@@ -68,12 +87,15 @@ class ShowOrdersInteractorTest extends \PHPUnit_Framework_TestCase
 
         $basketPosition = new BasketPosition();
         $basketPosition->setArticle($article);
+        $basketPosition->setCount(1);
 
         $basket = new Basket();
         $basket->setBasketPositions(array($basketPosition));
         $order->setBasket($basket);
 
         $this->orderRepository->save($order);
+        $this->basketRepository->save($basket);
+        $this->basketPositionRepository->addToBasket($basketPosition);
 
         $response = $this->interactor->execute(123456);
 
@@ -99,10 +121,10 @@ class ShowOrdersInteractorTest extends \PHPUnit_Framework_TestCase
                 'imagePath' => '/path/to/image.png',
                 'price' => '19.99 €'
             ),
-            'value' => '0 €',
-            'quantity' => 2
+            'value' => '19.99 €',
+            'quantity' => 1
         ), $response->presentableOrders[0]->positions[0]);
 
-        $this->assertEquals('39,99 €', $response->presentableOrders[0]->totalValue);
+        $this->assertEquals('19.99 €', $response->presentableOrders[0]->totalValue);
     }
 }
