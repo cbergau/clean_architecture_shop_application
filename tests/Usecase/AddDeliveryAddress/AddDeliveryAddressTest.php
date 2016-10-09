@@ -3,6 +3,7 @@
 namespace Bws\Usecase\AddDeliveryAddress;
 
 use Bws\Entity\CustomerStub;
+use Bws\Locale\Locale;
 use Bws\Repository\CustomerRepositoryMock;
 use Bws\Repository\DeliveryAddressRepositoryMock;
 
@@ -23,16 +24,27 @@ class AddDeliveryAddressTest extends \PHPUnit_Framework_TestCase
      */
     private $interactor;
 
+    /**
+     * @var Locale
+     */
+    private $locale;
+
     public function setUp()
     {
-        $this->customerRepository        = new CustomerRepositoryMock();
+        $this->customerRepository = new CustomerRepositoryMock();
         $this->deliveryAddressRepository = new DeliveryAddressRepositoryMock();
-        $this->interactor                = new AddDeliveryAddress($this->customerRepository, $this->deliveryAddressRepository);
+        $this->locale = new Locale('en', 'GB');
+
+        $this->interactor = new AddDeliveryAddress(
+            $this->customerRepository,
+            $this->deliveryAddressRepository,
+            $this->locale
+        );
     }
 
     public function testCustomerNotFoundShouldReturnError()
     {
-        $request             = new AddDeliveryAddressRequest();
+        $request = new AddDeliveryAddressRequest();
         $request->customerId = 0;
 
         $result = $this->interactor->execute($request);
@@ -43,13 +55,13 @@ class AddDeliveryAddressTest extends \PHPUnit_Framework_TestCase
     public function testAddressSavedShouldReturnSuccess()
     {
         $this->customerRepository->doSave(new CustomerStub());
-        $request             = new AddDeliveryAddressRequest();
+        $request = new AddDeliveryAddressRequest();
         $request->customerId = CustomerStub::ID;
-        $request->firstName  = 'Max';
-        $request->lastName   = 'Mustermann';
-        $request->street     = 'Musterstraße 55';
-        $request->city       = 'Hannover';
-        $request->zip        = '12345';
+        $request->firstName = 'Max';
+        $request->lastName = 'Mustermann';
+        $request->street = 'Musterstraße 55';
+        $request->city = 'Hannover';
+        $request->zip = '12345';
 
         $result = $this->interactor->execute($request);
 
@@ -69,18 +81,18 @@ class AddDeliveryAddressTest extends \PHPUnit_Framework_TestCase
     public function testInvalidAddressShouldReturnAnErrorAndNotBeSaved()
     {
         $this->customerRepository->doSave(new CustomerStub());
-        $request             = new AddDeliveryAddressRequest();
+        $request = new AddDeliveryAddressRequest();
         $request->customerId = CustomerStub::ID;
-        $request->firstName  = 'Max';
-        $request->lastName   = 'Mustermann';
-        $request->street     = 'Musterstraße 55';
-        $request->city       = 'Hannover';
-        $request->zip        = '999999';
+        $request->firstName = 'Max';
+        $request->lastName = 'Mustermann';
+        $request->street = 'Musterstraße 55';
+        $request->city = 'Hannover';
+        $request->zip = '999999';
 
         $result = $this->interactor->execute($request);
 
         $this->assertNull($this->deliveryAddressRepository->findLastInserted());
         $this->assertEquals($result::ADDRESS_INVALID, $result->code);
-        $this->assertEquals(array('zip' => array('STRING_TOO_LONG')), $result->messages);
+        $this->assertEquals(array('zip' => array('This field is too long')), $result->messages);
     }
 }

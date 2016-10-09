@@ -14,6 +14,9 @@ class StringLength implements ValidatorInterface
      */
     private $max;
 
+    /**
+     * @var string[]
+     */
     private $messages = array();
 
     /**
@@ -35,12 +38,12 @@ class StringLength implements ValidatorInterface
         $result = true;
 
         if (strlen($value) < $this->min) {
-            $this->messages[] = 'STRING_TOO_SHORT';
+            $this->messages[] = 'ERROR_MESSAGE_TOO_SHORT';
             $result           = false;
         }
 
         if (strlen($value) > $this->max) {
-            $this->messages[] = 'STRING_TOO_LONG';
+            $this->messages[] = 'ERROR_MESSAGE_TOO_LONG';
             $result           = false;
         }
 

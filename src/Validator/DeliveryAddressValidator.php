@@ -3,21 +3,33 @@
 namespace Bws\Validator;
 
 use Bws\Entity\DeliveryAddress;
+use Bws\Translator\Translator;
 
 class DeliveryAddressValidator
 {
     private $region;
     private $config;
+
+    /**
+     * @var string[]
+     */
     private $messages = array();
 
     /**
-     * @param string $region
-     * @param array  $config
+     * @var Translator
      */
-    public function __construct($region, $config)
+    private $translator;
+
+    /**
+     * @param string $region
+     * @param array $config
+     * @param Translator $translator
+     */
+    public function __construct($region, $config, Translator $translator)
     {
         $this->region = $region;
         $this->config = $config;
+        $this->translator = $translator;
     }
 
     /**
@@ -27,9 +39,8 @@ class DeliveryAddressValidator
      */
     public function isValid(DeliveryAddress $deliveryAddress)
     {
-        $valid = true;
         $this->messages = array();
-        return $this->doValidate($deliveryAddress, $this->getValidators(), $valid);
+        return $this->doValidate($deliveryAddress, $this->getValidators());
     }
 
     /**
@@ -43,14 +54,15 @@ class DeliveryAddressValidator
     /**
      * @param DeliveryAddress $deliveryAddress
      * @param                 ValidatorInterface[] $validators
-     * @param                 boolean $isValid
      *
      * @return bool
      */
-    protected function doValidate(DeliveryAddress $deliveryAddress, $validators, $isValid)
+    protected function doValidate(DeliveryAddress $deliveryAddress, $validators)
     {
+        $isValid = true;
+
         foreach ($validators as $property => $validatorsForProperty) {
-            $isValid = $this->validateProperty($deliveryAddress, $isValid, $validatorsForProperty, $property);
+            $isValid = $this->validateProperty($deliveryAddress, $validatorsForProperty, $property);
         }
 
         return $isValid;
@@ -58,27 +70,30 @@ class DeliveryAddressValidator
 
     /**
      * @param DeliveryAddress $deliveryAddress
-     * @param                 $valid
      * @param                 $validatorsForProperty
      * @param                 $property
      *
      * @return bool
      */
-    protected function validateProperty(DeliveryAddress $deliveryAddress, $valid, $validatorsForProperty, $property)
+    protected function validateProperty(DeliveryAddress $deliveryAddress, $validatorsForProperty, $property)
     {
+        $isEverythingValid = true;
+
         /** @var ValidatorInterface $validator */
         foreach ($validatorsForProperty as $validator) {
-            $getter                  = 'get' . ucfirst($property);
-            $value                   = $deliveryAddress->$getter();
-            $currentValidatorIsValid = $validator->isValid($value);
-            $valid                   = $valid && $currentValidatorIsValid;
+            $getterMethod = 'get' . ucfirst($property);
+            $value = $deliveryAddress->$getterMethod();
+            $isValueValid = $validator->isValid($value);
+            $isEverythingValid = $isEverythingValid && $isValueValid;
 
-            if (!$currentValidatorIsValid) {
-                $this->messages[$property] = $validator->getMessages();
+            if (!$isValueValid) {
+                foreach ($validator->getMessages() as $message) {
+                    $this->messages[$property][] = $this->translator->translate($message);
+                }
             }
         }
 
-        return $valid;
+        return $isEverythingValid;
     }
 
     /**
@@ -107,6 +122,7 @@ class DeliveryAddressValidator
         foreach ($validators as $validatorName => $validatorConfig) {
             $validatorInstances = $this->getValidator($validatorInstances, $property, $validatorConfig, $validatorName);
         }
+
         return $validatorInstances;
     }
 
@@ -138,7 +154,7 @@ class DeliveryAddressValidator
      */
     protected function getValidator($validatorInstances, $property, $validatorConfig, $validatorName)
     {
-        $mergedOptions              = array();
+        $mergedOptions = array();
         $defaultRegionConfiguration = array();
 
         foreach ($validatorConfig['options'] as $x => $regionalConfig) {
@@ -153,8 +169,8 @@ class DeliveryAddressValidator
             }
         }
 
-        $className                       = 'Bws\Validator\\' . $validatorName;
-        $finalOptions                    = $mergedOptions ? $mergedOptions : $defaultRegionConfiguration;
+        $className = 'Bws\Validator\\' . $validatorName;
+        $finalOptions = $mergedOptions ? $mergedOptions : $defaultRegionConfiguration;
         $validatorInstances[$property][] = new $className($finalOptions);
         return $validatorInstances;
     }

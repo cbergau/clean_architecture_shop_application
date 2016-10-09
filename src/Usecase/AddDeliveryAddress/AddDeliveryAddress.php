@@ -4,6 +4,7 @@ namespace Bws\Usecase\AddDeliveryAddress;
 
 use Bws\Entity\Customer;
 use Bws\Entity\DeliveryAddress;
+use Bws\Locale\Locale;
 use Bws\Repository\CustomerRepositoryInterface;
 use Bws\Repository\DeliveryAddressRepositoryInterface;
 use Bws\Validator\DeliveryAddressValidatorFactory;
@@ -20,12 +21,19 @@ class AddDeliveryAddress
      */
     private $deliveryAddressRepository;
 
+    /**
+     * @var Locale
+     */
+    private $locale;
+
     public function __construct(
         CustomerRepositoryInterface $customerRepository,
-        DeliveryAddressRepositoryInterface $deliveryAddressRepository
+        DeliveryAddressRepositoryInterface $deliveryAddressRepository,
+        Locale $locale
     ) {
-        $this->customerRepository        = $customerRepository;
+        $this->customerRepository = $customerRepository;
         $this->deliveryAddressRepository = $deliveryAddressRepository;
+        $this->locale = $locale;
     }
 
     /**
@@ -35,31 +43,32 @@ class AddDeliveryAddress
      */
     public function execute(AddDeliveryAddressRequest $request)
     {
-        $result = new AddDeliveryAddressResponse();
+        $response = new AddDeliveryAddressResponse();
 
         if (!$customer = $this->customerRepository->find($request->customerId)) {
-            $result->code = $result::CUSTOMER_NOT_FOUND;
-            return $result;
+            $response->code = $response::CUSTOMER_NOT_FOUND;
+            return $response;
         }
 
         $address = $this->buildAddressFromRequest($request, $customer);
 
-        $deliveryAddressValidator = DeliveryAddressValidatorFactory::getDeliveryAddressValidator('');
+        $deliveryAddressValidator = DeliveryAddressValidatorFactory::getDeliveryAddressValidator($this->locale);
+
         if (!$deliveryAddressValidator->isValid($address)) {
-            $result->code     = $result::ADDRESS_INVALID;
-            $result->messages = $deliveryAddressValidator->getMessages();
-            return $result;
+            $response->code = $response::ADDRESS_INVALID;
+            $response->messages = $deliveryAddressValidator->getMessages();
+            return $response;
         }
 
         $this->deliveryAddressRepository->save($address);
-        $result->code = $result::SUCCESS;
+        $response->code = $response::SUCCESS;
 
-        return $result;
+        return $response;
     }
 
     /**
      * @param AddDeliveryAddressRequest $request
-     * @param Customer                  $customer
+     * @param Customer $customer
      *
      * @return DeliveryAddress
      */

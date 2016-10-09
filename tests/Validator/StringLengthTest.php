@@ -17,19 +17,19 @@ class StringLengthTest extends \PHPUnit_Framework_TestCase
     public function testGivenNullReturnsFalseAndMessageTooShort()
     {
         $this->assertFalse($this->validator->isValid(null));
-        $this->assertEquals(array('STRING_TOO_SHORT'), $this->validator->getMessages());
+        $this->assertEquals(array('ERROR_MESSAGE_TOO_SHORT'), $this->validator->getMessages());
     }
 
     public function testGivenTooShortStringReturnsFalseAndMessageTooShort()
     {
         $this->assertFalse($this->validator->isValid('a'));
-        $this->assertEquals(array('STRING_TOO_SHORT'), $this->validator->getMessages());
+        $this->assertEquals(array('ERROR_MESSAGE_TOO_SHORT'), $this->validator->getMessages());
     }
 
     public function testGivenTooLongStringReturnsFalseAndMessageTooLong()
     {
         $this->assertFalse($this->validator->isValid('abcdefgh'));
-        $this->assertEquals(array('STRING_TOO_LONG'), $this->validator->getMessages());
+        $this->assertEquals(array('ERROR_MESSAGE_TOO_LONG'), $this->validator->getMessages());
     }
 
     public function testGivenValidStringReturnsTrueAndNoMessages()
